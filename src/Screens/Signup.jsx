@@ -1,25 +1,27 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Signup() {
   const [credentials, setCredentials] = useState({
+    name: "",
     email: "",
     password: "",
+    geolocation: "",
   });
-  
-  let navigate = useNavigate();
   //Synthetic event
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/loginuser", {
+    const response = await fetch("http://localhost:5000/api/createuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: credentials.name,
         email: credentials.email,
         password: credentials.password,
+        location: credentials.geolocation,
       }),
     });
 
@@ -29,11 +31,6 @@ export default function Login() {
     if (!json.success) {
       alert("Enter valid credentials");
     }
-
-    if (json.success){
-      navigate("/");
-    }
-
   };
 
   const onChange = (e) => {
@@ -44,6 +41,19 @@ export default function Login() {
     <>
       <div className="container">
         <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="name"
+              value={credentials.name}
+              onChange={onChange}
+            />
+          </div>
+
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -71,11 +81,25 @@ export default function Login() {
               onChange={onChange}
             />
           </div>
+          <div className="mb-3">
+            <label htmlFor="address" className="form-label">
+              Address
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="address"
+              name="geolocation"
+              value={credentials.geolocation}
+              onChange={onChange}
+            />
+          </div>
+          
           <button type="submit" className="m-3 btn btn-success">
             Submit
           </button>
-          <Link to="/createuser" className="m-3 btn btn-danger">
-            I'm a new user
+          <Link to="/login" className="m-3 btn btn-danger">
+            Already a User
           </Link>
         </form>
       </div>

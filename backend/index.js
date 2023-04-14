@@ -2,8 +2,25 @@ const express = require('express')
 const app = express()
 const port = 5000
 const mongodb = require('./db');
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
 
 mongodb();
+
+app.use((req, res, next)=>{
+  res.setHeader("Access-Cantrol-Allow-Origin", "https://localhost:3000")
+  res.header(
+    "Acess-Cantrol-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+})
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 
 app.get('/', (req, res) => {
