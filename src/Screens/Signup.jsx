@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [credentials, setCredentials] = useState({
@@ -8,6 +8,9 @@ export default function Signup() {
     password: "",
     geolocation: "",
   });
+
+  let navigate = useNavigate();
+  
   //Synthetic event
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,9 +30,14 @@ export default function Signup() {
 
     const json = await response.json();
     console.log(json);
+    if (json.success) {
+      //save the auth toke to local storage and redirect
+      localStorage.setItem('token', json.authToken)
+      navigate("/login")
 
-    if (!json.success) {
-      alert("Enter valid credentials");
+    }
+    else {
+      alert("Enter Valid Credentials")
     }
   };
 
@@ -38,7 +46,7 @@ export default function Signup() {
   };
 
   return (
-    <>
+    <div style={{ backgroundImage: 'url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', backgroundSize: 'cover',height: '100vh' }}>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -103,6 +111,6 @@ export default function Signup() {
           </Link>
         </form>
       </div>
-    </>
+    </div>
   );
 }

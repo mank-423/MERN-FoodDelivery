@@ -26,14 +26,15 @@ export default function Login() {
     const json = await response.json();
     console.log(json);
 
-    if (!json.success) {
-      alert("Enter valid credentials");
-    }
-
-    if (json.success){
-      localStorage.setItem("authToken", json.authToken);
-      console.log(localStorage.getItem("authToken")); 
+    if (json.success) {
+      //save the auth toke to local storage and redirect
+      //localStorage.setItem('userEmail', credentials.email)
+      localStorage.setItem(' token', json.authToken)
       navigate("/");
+
+    }
+    else {
+      alert("Enter Valid Credentials")
     }
 
   };
@@ -43,7 +44,7 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div style={{backgroundImage: 'url("https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', height: '100vh', backgroundSize: 'cover' }}>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -77,10 +78,10 @@ export default function Login() {
             Submit
           </button>
           <Link to="/createuser" className="m-3 btn btn-danger">
-            I'm a new user
+            New user
           </Link>
         </form>
       </div>
-    </>
+    </div>
   );
 }
