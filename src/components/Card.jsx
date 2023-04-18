@@ -15,6 +15,24 @@ export default function Card(props) {
   // let foodItem = props.foodItems;
 
   const handleAddToCart = async() => {
+
+    let food = []
+    for (const item of data){
+      if (item.id === props.foodItem._id){
+        food = item;
+        break;
+      }
+    }
+
+    //If only the qty of the order changes
+    //And change for only when size
+    if (food !== []){
+      if (food.size === size){
+        await dispatch({type: "UPDATE", id:props.foodItem._id, price: finalPrice, qty: qty})
+        return 
+      }
+    }
+
     await dispatch(
       {
         type:"ADD", 
@@ -49,7 +67,6 @@ export default function Card(props) {
           />
           <div className="card-body">
             <h5 className="card-title">{props.foodItem.name}</h5>
-            <p className="card-text">This is some important text.</p>
             <div className="container w-100">
               {/* Creating a dropdown for quantity*/}
               <select className="m-2 h-100 bg-success rounded" style={{ select: "#FF0000" }} onChange={(e)=>setQty(e.target.value)}>

@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
 
+
 export default function Home() {
   const [search, setSearch] = useState([]);
   const [foodCategory, setfoodCategory] = useState([]);
