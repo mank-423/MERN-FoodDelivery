@@ -28,29 +28,24 @@ export default function Card(props) {
     //And change for only when size
     if (food !== []){
       if (food.size === size){
-        await dispatch({type: "UPDATE", id:props.foodItem._id, price: finalPrice, qty: qty})
+        await dispatch({type: "UPDATE", id: props.foodItem._id, price: finalPrice, qty: qty})
+        return
+      }
+      else if (food.size !== size){
+        await dispatch({type:"ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size })
         return 
       }
+      await dispatch({type:"ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size })
     }
-
-    await dispatch(
-      {
-        type:"ADD", 
-        id: props.foodItem._id,
-        name: props.foodItem.name, 
-        price: finalPrice,
-        qty: qty, 
-        size: size
-      }
-    )
-    console.log(data);
+    //console.log(data);
   }
 
+  let finalPrice = qty * parseInt(options[size]);
+  
   useEffect(() => {
     setSize(priceRef.current.value)
   }, [])
 
-  let finalPrice = qty * parseInt(options[size]);
 
   return (
     <div>

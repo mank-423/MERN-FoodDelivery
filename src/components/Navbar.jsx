@@ -11,7 +11,7 @@ export default function Navbar() {
   const [cartView, setCartView] = useState(false)
   const navigate = useNavigate();
   
-  let data=  useCart();
+  let data =  useCart();
 
   const handleLogoout = () => {
     localStorage.removeItem("token");
@@ -48,20 +48,20 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-
-              {localStorage.getItem("token") ?(
+              
+              {/* {localStorage.getItem("token") ? (
                 <li className="nav-item">
                   <Link
                     className="nav-link active fs-5 fw-bold"
                     aria-current="page"
-                    to="/"
+                    to="/myOrder"
                   >
                     My orders
                   </Link>
                 </li>
               ) : (
                 ""
-              )}
+              )} */}
             </ul>
 
             {!localStorage.getItem("token") ? (

@@ -21,14 +21,17 @@ app.use((req, res, next)=>{
   next();
 })
 app.use(cors(corsOptions)) // Use this after the variable declaration
-
+// app.use(cors());
+// app.options('*', cors());
+app.use(express.json());
+app.use('/api', require("./Routes/CreateUser"));
+app.use('/api', require("./Routes/DisplayData"));
+app.use('/api', require("./Routes/OrderData"));
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-app.use(express.json());
-app.use('/api', require("./Routes/CreateUser"));
-app.use('/api', require("./Routes/DisplayData"));
+
 
 
 app.listen(port, () => {

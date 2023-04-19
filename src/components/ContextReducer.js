@@ -11,13 +11,20 @@ const reducer = (state, action)=>{
             let newArr = [...state]
             newArr.splice(action.index, 1)
             return newArr 
-        // case "UPDATE":
-        //     let arr = [...state]
-        //     arr.find((food, index) => (
-        //         // console.log(food.qty, parseInt(action.qty), action.price + food.price);
-        //         arr[index] = {...food, qty: parseInt(action.qty) + food.qty, price: action.price + food.price}
-        //     ))
-        //     break;
+        case "DROP":
+            let empArray = []
+            return empArray
+        case "UPDATE":
+            let arr = [...state]
+            arr.find((food, index) => {
+                if (food.id === action.id) {
+                    console.log(food.qty, parseInt(action.qty), action.price + food.price)
+                    //Adding food will add the quantity in the previous qty
+                    arr[index] = { ...food, qty: parseInt(action.qty) + food.qty, price: action.price + food.price }
+                }
+                return arr
+            })
+            return arr
         default:
             console.log("Error in reducer");
     }

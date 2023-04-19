@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const mongoURI = "mongodb+srv://mankmern:mankmern@mernproject.bicx37m.mongodb.net/gofood?retryWrites=true&w=majority";
 //const mongoURI = process.env.MONOGDB_URI;
+//const mongoURI = "mongodb://mankmern:mankmern@ac-cbaxhm8-shard-00-00.bicx37m.mongodb.net:27017,ac-cbaxhm8-shard-00-01.bicx37m.mongodb.net:27017,ac-cbaxhm8-shard-00-02.bicx37m.mongodb.net:27017/?ssl=true&replicaSet=atlas-2vvume-shard-0&authSource=admin&retryWrites=true&w=majority"
 
 // module.exports = function (callback) {
 //   mongoose.connect(mongoURI, { useNewUrlParser: true }, async (err, result) => {
