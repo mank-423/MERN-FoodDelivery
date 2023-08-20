@@ -6,9 +6,12 @@ Bootstrap-dark-5 CSS framework is used for the designing part.
 Usage of API's built on localhost, and with MongoDB document and collction insertion.
 Usage of Bcryptjs and JWT tokens for the authorisation and encryption of the password and generating tokens for security purpose.
 Also the search bar is made active by using filter in Reactjs to get the desired food item.
+<br>
 For seperate repos of UI and backend:
+<br>
 Front-end:
 https://github.com/mank-423/goFoodUI/tree/main
+<br>
 Back-end:
 https://github.com/mank-423/goFoodBackend
 # The website 
